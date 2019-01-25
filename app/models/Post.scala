@@ -9,4 +9,5 @@ package models
   */
 case class Post(id: Option[Long] = None,
                 title: String,
-                content: String)
+                content: String,
+                authorId: Long)
