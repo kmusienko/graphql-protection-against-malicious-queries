@@ -1,5 +1,5 @@
 
-name := "graphqlErrorhandling"
+name := "graphql-protect-against-maliciou-queries"
 
 version := "0.1"
 
