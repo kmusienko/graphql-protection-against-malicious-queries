@@ -2,7 +2,7 @@ package graphql.resolvers
 
 import com.google.inject.Inject
 import models.Post
-import repositories.Repository
+import repositories.PostRepository
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -12,7 +12,7 @@ import scala.concurrent.{ExecutionContext, Future}
   * @param postRepository   a repository that provides basic operations for the Post entity
   * @param executionContext a thread pool to asynchronously execute operations
   */
-class PostResolver @Inject()(val postRepository: Repository[Post],
+class PostResolver @Inject()(val postRepository: PostRepository,
                              implicit val executionContext: ExecutionContext) {
 
   /**
@@ -29,9 +29,8 @@ class PostResolver @Inject()(val postRepository: Repository[Post],
     * @param content a content of the post
     * @return added post
     */
-  def addPost(title: String, content: String): Future[Post] =
-    postRepository.create(Post(title = title, content = content))
-
+  def addPost(title: String, content: String, authorId: Long): Future[Post] =
+    postRepository.create(Post(title = title, content = content, authorId = authorId))
 
   /**
     * Finds a post by id.
@@ -49,8 +48,8 @@ class PostResolver @Inject()(val postRepository: Repository[Post],
     * @param content a content of the post
     * @return updated post
     */
-  def updatePost(id: Long, title: String, content: String): Future[Post] =
-    postRepository.update(Post(Some(id), title, content))
+  def updatePost(id: Long, title: String, content: String, authorId: Long): Future[Post] =
+    postRepository.update(Post(Some(id), title, content, authorId))
 
   /**
     * Deletes a post by id.
