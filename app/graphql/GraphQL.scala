@@ -5,8 +5,6 @@ import graphql.schema.PostSchema
 import models.errors.TooComplexQueryError
 import sangria.execution.{ExceptionHandler, HandledException, MaxQueryDepthReachedError}
 import sangria.schema.{ObjectType, fields}
-import sangria.validation.UndefinedFieldViolation
-import sangria.marshalling.MarshallingUtil._
 
 /**
   * Defines the global GraphQL-related objects of the application.
